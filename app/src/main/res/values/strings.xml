@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">v2g</string>
     <string name="toolbar_title">v2g-demo</string>
-    <string name="google_maps_key">AIzaSyASd8x1czDGI2uIp1XeF2MDeqiZxPL5vO0</string>
+    <string name="google_maps_key">123456a</string>
 </resources>
