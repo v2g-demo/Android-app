@@ -8,15 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.demo.v2g.MyBottonSheepDialog;
 import com.demo.v2g.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     SupportMapFragment mapFragment;
+    private static MyBottonSheepDialog dialog;
+    private GoogleMap mMap;
 
     public MainFragment() {
         // Required empty public constructor
@@ -41,6 +48,28 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
+// Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        LatLng canderra = new LatLng(-35.309723, 149.124693);
+        LatLng newcastle = new LatLng(-32.928943, 151.781419);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(canderra).title("Marker in Canderra"));
+        mMap.addMarker(new MarkerOptions().position(newcastle).title("Marker in Newcastle"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 5));
+
+        //Обработчик нажатия на Маркер
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                dialog = new MyBottonSheepDialog();
+                //Выбранный Маркер в центр экрана
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                //Показать BottonSheetDialog
+                dialog.show(getFragmentManager(), marker.getTitle());
+                return false;
+            }
+        });
     }
 }
