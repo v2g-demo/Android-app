@@ -24,27 +24,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testRequest();
         initMainFragment();
-    }
-
-    private void testRequest() {
-        Log.d(TAG,"testRequest");
-        Call<MapsResponse> maps = App.getV2gApi().getAllMaps();
-
-        maps.enqueue(new Callback<MapsResponse>() {
-
-            @Override
-            public void onResponse(Call<MapsResponse> call, Response<MapsResponse> response) {
-                Log.d(TAG,"testRequest");
-                Log.d(TAG,"response.body().getContent().get(0).getCenter() => " + response.body().getContent().get(0).getCenter());
-            }
-
-            @Override
-            public void onFailure(Call<MapsResponse> call, Throwable t) {
-
-            }
-        });
     }
 
     private void initMainFragment() {
