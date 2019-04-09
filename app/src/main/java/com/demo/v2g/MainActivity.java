@@ -7,7 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import com.demo.v2g.fragments.MainFragment;
+import com.demo.v2g.fragments.ChooseGameFragment;
+import com.demo.v2g.fragments.GameFragment;
 import com.demo.v2g.model.MapsResponse;
 
 import retrofit2.Call;
@@ -49,9 +50,16 @@ public class MainActivity extends FragmentActivity {
     private void initMainFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container,new MainFragment());
+        fragmentTransaction.add(R.id.fragment_container,new ChooseGameFragment());
         fragmentTransaction.commit();
     }
 
+
+/*    private void initMainFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container,new GameFragment());
+        fragmentTransaction.commit();
+    }*/
 
 }

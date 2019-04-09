@@ -18,13 +18,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class MainFragment extends Fragment implements OnMapReadyCallback {
+public class GameFragment extends Fragment implements OnMapReadyCallback {
 
     SupportMapFragment mapFragment;
     private static CustomBottomSheepDialog dialog;
     private GoogleMap mMap;
 
-    public MainFragment() {
+    public GameFragment() {
 
     }
 
@@ -33,7 +33,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.main_fragment, container, false);
+        View v = inflater.inflate(R.layout.game_fragment, container, false);
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment == null) {
             FragmentManager fm = getFragmentManager();
