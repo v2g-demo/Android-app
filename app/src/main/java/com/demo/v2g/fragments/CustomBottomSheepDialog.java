@@ -1,4 +1,4 @@
-package com.demo.v2g;
+package com.demo.v2g.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MyBottonSheepDialog extends BottomSheetDialogFragment {
+import com.demo.v2g.R;
+
+public class CustomBottomSheepDialog extends BottomSheetDialogFragment {
 
     @Nullable
     @Override
