@@ -1,19 +1,21 @@
 package com.demo.v2g.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.demo.v2g.App;
 import com.demo.v2g.R;
+import com.demo.v2g.adapters.GamesAdapter;
+import com.demo.v2g.model.Content;
 import com.demo.v2g.model.MapsResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +24,7 @@ import retrofit2.Response;
 public class ChooseGameFragment extends Fragment {
 
     private static String TAG = "ChooseGameFragment";
+    RecyclerView recyclerView;
 
 /*    private void initMainFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -36,6 +39,7 @@ public class ChooseGameFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.choose_fragment, container, false);
+        recyclerView = v.findViewById(R.id.games_list);
         getAllGames();
         return v;
     }
@@ -47,7 +51,11 @@ public class ChooseGameFragment extends Fragment {
                 Log.d(TAG,"getAllGames() => onResponse");
 
                 if(response.body().getContent().size() != 0) {
-
+                    List<Content>  contents = response.body().getContent();
+                    createGameCards(contents);
+                } else {
+                    Log.d(TAG,"There're no games!");
+                    Toast.makeText(getContext(), "There're no games!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -57,4 +65,10 @@ public class ChooseGameFragment extends Fragment {
             }
         });
     }
+
+    private void createGameCards(List<Content> contents) {
+        GamesAdapter gamesAdapter = new GamesAdapter(getFragmentManager(),contents);
+        recyclerView.setAdapter(gamesAdapter);
+    }
+
 }

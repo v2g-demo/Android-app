@@ -55,11 +55,4 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-/*    private void initMainFragment() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container,new GameFragment());
-        fragmentTransaction.commit();
-    }*/
-
 }
