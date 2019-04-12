@@ -28,6 +28,8 @@ import java.util.List;
 
 public class GameFragment extends Fragment implements OnMapReadyCallback {
 
+    private static final String TAG = "GameFragment";
+
     SupportMapFragment mapFragment;
     private static CustomBottomSheepDialog dialog;
     private GoogleMap mMap;
@@ -97,7 +99,8 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         LatLng sydney = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in " + cityName));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoom));
-        initMapObjec
+
+        initMapObjectOnMap(googleMap);
 
         //Обработчик нажатия на Маркер
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -111,6 +114,21 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
                 return false;
             }
         });
+    }
+
+    private void initMapObjectOnMap(GoogleMap googleMap) {
+        if(objectsContents == null) return;
+
+        for(ObjectsContent objectOnMap : objectsContents) {
+            Log.d(TAG,"objectOnMap !");
+            double objLat = objectOnMap.getLocation().getLatitude();
+            double objLon = objectOnMap.getLocation().getLongitude();
+            String objTitle = objectOnMap.getName() + " " + objectOnMap.getType();
+
+            LatLng newObjectOnMap = new LatLng(objLat, objLon);
+
+            googleMap.addMarker(new MarkerOptions().position(newObjectOnMap).title(objTitle));
+        }
     }
 }
 
