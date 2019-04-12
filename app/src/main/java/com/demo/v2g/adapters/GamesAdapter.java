@@ -9,30 +9,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
-import com.demo.v2g.fragments.ChooseGameFragment;
 import com.demo.v2g.fragments.GameFragment;
-import com.demo.v2g.model.MapsResponse;
+import com.demo.v2g.model.maps.MapsContentLinks;
 
 import com.demo.v2g.R;
-import com.demo.v2g.model.Center;
-import com.demo.v2g.model.Content;
+import com.demo.v2g.model.maps.MapsContent;
 
 import java.util.List;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> {
 
-    private List<Content> contentList;
+    private List<MapsContent> mapsContentList;
     private Context mContext;
     private FragmentManager mFragment;
 
-    public GamesAdapter(FragmentManager fragment, List<Content> resultEpisodes) {
+    public GamesAdapter(FragmentManager fragment, List<MapsContent> resultEpisodes) {
         mFragment = fragment;
-        this.contentList = resultEpisodes;
+        this.mapsContentList = resultEpisodes;
 
     }
 
@@ -46,11 +42,12 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Content content = contentList.get(position);
-        final String name = content.getName();
-        final int zoom = content.getZoom();
-        final double lat = content.getCenter().getLatitude();
-        final double lon = content.getCenter().getLongitude();
+        final MapsContent mapsContent = mapsContentList.get(position);
+        final String name = mapsContent.getName();
+        final int zoom = mapsContent.getZoom();
+        final double lat = mapsContent.getCenter().getLatitude();
+        final double lon = mapsContent.getCenter().getLongitude();
+        MapsContentLinks mapsContentLinks = new MapsContentLinks();
 
 
         holder.mapName.setText(name);
@@ -62,7 +59,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
         });
     }
 
-    private void initGameFragment(String name, int zoom, double lat, double lon) {
+    private void initGameFragment(String name, int zoom, double lat, double lon, ) {
         FragmentTransaction fragmentTransaction = mFragment.beginTransaction();
         fragmentTransaction.add(R.id.fragment_container,GameFragment.newInstance(name,zoom,lat,lon));
         fragmentTransaction.commit();
@@ -71,7 +68,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return contentList.size();
+        return mapsContentList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -106,11 +103,11 @@ package com.demo.v2g.adapters;
 
         import com.demo.v2g.fragments.ChooseGameFragment;
         import com.demo.v2g.fragments.GameFragment;
-        import com.demo.v2g.model.MapsResponse;
+        import com.demo.v2g.model.maps.MapsResponse;
 
         import com.demo.v2g.R;
-        import com.demo.v2g.model.Center;
-        import com.demo.v2g.model.Content;
+        import com.demo.v2g.model.maps.Center;
+        import com.demo.v2g.model.maps.MapsContent;
 
         import java.util.List;
 
@@ -118,13 +115,13 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 
     private static String TAG = "GamesAdapter";
 
-    private List<Content> contentList;
+    private List<MapsContent> mapsContentList;
     private Context mContext;
     private FragmentManager mFragment;
 
-    public GamesAdapter(FragmentManager fragment, List<Content> resultEpisodes) {
+    public GamesAdapter(FragmentManager fragment, List<MapsContent> resultEpisodes) {
         mFragment = fragment;
-        this.contentList = resultEpisodes;
+        this.mapsContentList = resultEpisodes;
 
     }
 
@@ -138,7 +135,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Content content = contentList.get(position);
+        final MapsContent content = mapsContentList.get(position);
         String name = content.getName();
         final int zoom = content.getZoom();
         final double lat = content.getCenter().getLatitude();
@@ -165,7 +162,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return contentList.size();
+        return mapsContentList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

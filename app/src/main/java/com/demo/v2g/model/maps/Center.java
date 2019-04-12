@@ -1,4 +1,4 @@
-package com.demo.v2g.model;
+package com.demo.v2g.model.maps;
 
 import java.util.List;
 

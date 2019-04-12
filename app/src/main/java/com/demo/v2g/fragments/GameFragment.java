@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 
 import com.demo.v2g.Constants;
 import com.demo.v2g.R;
-import com.demo.v2g.model.Center;
-import com.demo.v2g.model.Content;
+import com.demo.v2g.model.maps.MapsContentLinks;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,13 +35,14 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-    public static GameFragment newInstance(String name,int zoom, double lat, double lon) {
+    public static GameFragment newInstance(String name, int zoom, double lat, double lon, MapsContentLinks mapsContentLinks) {
         GameFragment fragment = new GameFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.NAME, name);
         bundle.putSerializable(Constants.ZOOM, zoom);
         bundle.putSerializable(Constants.CENTER_LAT, lat);
         bundle.putSerializable(Constants.CENTER_LON, lon);
+        bundle.putSerializable(Constants.CENTER_LON, mapsContentLinks);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -118,8 +118,8 @@ package com.demo.v2g.fragments;
 
         import com.demo.v2g.Constants;
         import com.demo.v2g.R;
-        import com.demo.v2g.model.Center;
-        import com.demo.v2g.model.Content;
+        import com.demo.v2g.model.maps.Center;
+        import com.demo.v2g.model.maps.MapsContent;
         import com.google.android.gms.maps.CameraUpdateFactory;
         import com.google.android.gms.maps.GoogleMap;
         import com.google.android.gms.maps.OnMapReadyCallback;

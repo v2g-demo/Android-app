@@ -1,11 +1,11 @@
-package com.demo.v2g.model;
+package com.demo.v2g.model.maps;
 
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Content {
+public class MapsContent {
 
     @SerializedName("id")
     @Expose
@@ -27,7 +27,7 @@ public class Content {
     private List<Object> content = null;
     @SerializedName("links")
     @Expose
-    private List<ContentLinks> links = null;
+    private List<MapsContentLinks> links = null;
 
     public Integer getId() {
         return id;
@@ -77,11 +77,11 @@ public class Content {
         this.content = content;
     }
 
-    public List<ContentLinks> getLinks() {
+    public List<MapsContentLinks> getLinks() {
         return links;
     }
 
-    public void setLinks(List<ContentLinks> links) {
+    public void setLinks(List<MapsContentLinks> links) {
         this.links = links;
     }
 

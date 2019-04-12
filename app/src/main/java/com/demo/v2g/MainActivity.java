@@ -5,15 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 
 import com.demo.v2g.fragments.ChooseGameFragment;
-import com.demo.v2g.fragments.GameFragment;
-import com.demo.v2g.model.MapsResponse;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class MainActivity extends FragmentActivity {

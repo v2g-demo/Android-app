@@ -1,4 +1,4 @@
-package com.demo.v2g.model;
+package com.demo.v2g.model.maps;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class MapsResponse {
 
     @SerializedName("content")
     @Expose
-    private List<Content> content = null;
+    private List<MapsContent> content = null;
 
     public List<Link> getLinks() {
         return links;
@@ -23,12 +23,12 @@ public class MapsResponse {
         this.links = links;
     }
 
-    public List<Content> getContent() {
+    public List<MapsContent> getContent() {
         return content;
     }
 
-    public void setContent(List<Content> content) {
-        this.content = content;
+    public void setContent(List<MapsContent> mapsContent) {
+        this.content = mapsContent;
     }
 
 }
