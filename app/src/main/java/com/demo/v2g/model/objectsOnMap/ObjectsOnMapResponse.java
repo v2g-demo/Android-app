@@ -1,4 +1,4 @@
-package com.demo.v2g.model.objectOnMap;
+package com.demo.v2g.model.objectsOnMap;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

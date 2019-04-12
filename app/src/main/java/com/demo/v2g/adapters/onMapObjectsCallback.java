@@ -1,6 +1,6 @@
 package com.demo.v2g.adapters;
 
-import com.demo.v2g.model.objectOnMap.ObjectsContent;
+import com.demo.v2g.model.objectsOnMap.ObjectsContent;
 
 import java.util.List;
 
