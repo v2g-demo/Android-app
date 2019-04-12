@@ -1,6 +1,7 @@
 package com.demo.v2g.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import com.demo.v2g.Constants;
 import com.demo.v2g.R;
 import com.demo.v2g.model.maps.MapsContentLinks;
+import com.demo.v2g.model.objectOnMap.ObjectsContent;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,6 +21,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 public class GameFragment extends Fragment implements OnMapReadyCallback {
@@ -30,19 +35,23 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
     private int zoom;
     private  double lat;
     private double lon;
+    private List<ObjectsContent> objectsContents;
 
     public GameFragment() {
 
     }
 
-    public static GameFragment newInstance(String name, int zoom, double lat, double lon, MapsContentLinks mapsContentLinks) {
+    public static GameFragment newInstance(String name, int zoom, double lat, double lon, List<ObjectsContent> objectsContents) {
         GameFragment fragment = new GameFragment();
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.NAME, name);
         bundle.putSerializable(Constants.ZOOM, zoom);
         bundle.putSerializable(Constants.CENTER_LAT, lat);
         bundle.putSerializable(Constants.CENTER_LON, lon);
-        bundle.putSerializable(Constants.CENTER_LON, mapsContentLinks);
+        if(objectsContents != null) {
+            bundle.putSerializable(Constants.MAP_OBJECTS, (Serializable) objectsContents);
+        }
+        //bundle.putSerializable(Constants.CENTER_LON, mapsContentLinks);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -63,6 +72,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
             zoom = bundle.getInt(Constants.ZOOM, 0);
             lat = bundle.getDouble(Constants.CENTER_LAT, 0);
             lon =  bundle.getDouble(Constants.CENTER_LON, 0);
+            objectsContents = (List<ObjectsContent>) bundle.getSerializable(Constants.MAP_OBJECTS);
         }
 
 
@@ -87,6 +97,7 @@ public class GameFragment extends Fragment implements OnMapReadyCallback {
         LatLng sydney = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in " + cityName));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoom));
+        initMapObjec
 
         //Обработчик нажатия на Маркер
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {

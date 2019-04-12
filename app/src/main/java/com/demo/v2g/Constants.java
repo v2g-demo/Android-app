@@ -7,4 +7,5 @@ public class Constants {
     public static final String ZOOM = "zoom";
     public static final String CENTER_LAT = "latitude";
     public static final String CENTER_LON = "longtitude";
+    public static final String MAP_OBJECTS = "map_objects";
 }

@@ -1,10 +1,11 @@
 package com.demo.v2g.model.objectOnMap;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ObjectsContent {
+public class ObjectsContent implements Serializable {
 
     @SerializedName("id")
     @Expose
