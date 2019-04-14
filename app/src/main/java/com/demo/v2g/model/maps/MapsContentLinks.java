@@ -1,9 +1,11 @@
-package com.demo.v2g.model;
+package com.demo.v2g.model.maps;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Link {
+import java.io.Serializable;
+
+public class MapsContentLinks implements Serializable {
 
     @SerializedName("rel")
     @Expose

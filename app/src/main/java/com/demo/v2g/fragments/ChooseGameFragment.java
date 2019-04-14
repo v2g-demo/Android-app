@@ -12,8 +12,8 @@ import android.widget.Toast;
 import com.demo.v2g.App;
 import com.demo.v2g.R;
 import com.demo.v2g.adapters.GamesAdapter;
-import com.demo.v2g.model.Content;
-import com.demo.v2g.model.MapsResponse;
+import com.demo.v2g.model.maps.MapsContent;
+import com.demo.v2g.model.maps.MapsResponse;
 
 import java.util.List;
 
@@ -51,8 +51,8 @@ public class ChooseGameFragment extends Fragment {
                 Log.d(TAG,"getAllGames() => onResponse");
 
                 if(response.body().getContent().size() != 0) {
-                    List<Content>  contents = response.body().getContent();
-                    createGameCards(contents);
+                    List<MapsContent> mapsContents = response.body().getContent();
+                    createGameCards(mapsContents);
                 } else {
                     Log.d(TAG,"There're no games!");
                     Toast.makeText(getContext(), "There're no games!", Toast.LENGTH_SHORT).show();
@@ -66,8 +66,8 @@ public class ChooseGameFragment extends Fragment {
         });
     }
 
-    private void createGameCards(List<Content> contents) {
-        GamesAdapter gamesAdapter = new GamesAdapter(getFragmentManager(),contents);
+    private void createGameCards(List<MapsContent> mapsContents) {
+        GamesAdapter gamesAdapter = new GamesAdapter(getFragmentManager(), mapsContents);
         recyclerView.setAdapter(gamesAdapter);
     }
 

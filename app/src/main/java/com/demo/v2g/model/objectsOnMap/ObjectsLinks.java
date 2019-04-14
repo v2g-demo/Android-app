@@ -1,9 +1,9 @@
-package com.demo.v2g.model;
+package com.demo.v2g.model.objectsOnMap;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ContentLinks {
+public class ObjectsLinks {
 
     @SerializedName("rel")
     @Expose
